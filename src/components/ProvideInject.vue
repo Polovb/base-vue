@@ -27,5 +27,6 @@ provide(injectionKey, readonly(parentState));
 <style scoped>
 .component {
     border: 2px dashed hsl(0, 0%, 90%);
+    text-align: left;
 }
 </style>

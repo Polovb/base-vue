@@ -1,39 +1,74 @@
 <template>
-    <pre>Vee Validate</pre>
-    <pre>{{ controlledValues }}</pre>
-    <form @submit="onSubmit">
-        <ValidatedInput name="firstName" label="First name" />
-        <!-- <ValidatedInput name="lastName" /> -->
-        <ValidatedInput name="email" type="email" label="email" />
-        <!-- <ValidatedInput name="password" type="password" />
-        <ValidatedInput name="passwordConfirm" type="password" /> -->
-        <q-btn color="primary" text-color="grey-1" unelevated>Submit</q-btn>
-    </form>
+    <div class="w-full flex !flex-nowrap gap-4">
+        <div class="basis-1/2 flex-grow">
+            <div class="flex items-center justify-between mb-4">
+                <q-toggle v-model="isEditing" label="Edit mode" />
+                <q-btn square @click="() => resetForm()" unelevated
+                    >Reset form</q-btn
+                >
+            </div>
+            <form @submit="onSubmit" class="w-full">
+                <ValidatedField name="firstName">
+                    <ValidatedInput label="First name" />
+                </ValidatedField>
+                <ValidatedField name="email">
+                    <ValidatedInput type="email" label="email" />
+                </ValidatedField>
+                <ValidatedFieldArrayParent name="bananas">
+                    <ValidatedFieldArrayChildren />
+                </ValidatedFieldArrayParent>
+                <div
+                    class="mt-8 p-2 bg-slate-200 flex justify-end border-t border-slate-400"
+                >
+                    <q-btn
+                        square
+                        color="primary"
+                        text-color="grey-1"
+                        unelevated
+                    >
+                        Submit
+                    </q-btn>
+                </div>
+            </form>
+        </div>
+        <div class="basis-1/2">
+            <div class="bg-slate-200 p-2">
+                <pre>Vee Validate</pre>
+                <pre>{{ controlledValues }}</pre>
+            </div>
+        </div>
+    </div>
 </template>
 <script setup lang="ts">
+import ValidatedField from "./ValidatedField.vue";
+import ValidatedInput from "./ValidatedInput.vue";
+import { provideForm } from "../hooks/validation";
+import ValidatedFieldArrayParent from "./ValidatedFieldArrayParent.vue";
+import ValidatedFieldArrayChildren from "./ValidatedFieldArrayChildren.vue";
 import { z } from "zod";
 
-import { useForm } from "vee-validate";
-import ValidatedInput from "./ValidatedInput.vue";
-import { toTypedSchema } from "@vee-validate/zod";
-
-const { handleSubmit, controlledValues } = useForm({
-    validationSchema: toTypedSchema(
-        z.object({
+const { resetForm, isEditing, handleSubmit, controlledValues } = provideForm(
+    () => ({
+        validationSchema: z.object({
             firstName: z.string(),
             email: z.string().email(),
-        })
-    ),
-});
+            bananas: z.array(
+                z.string(), //.email()
+                // z.object({
+                //     name: z.string(),
+                // })
+            ),
+        }),
+    }),
+);
 
 const onSubmit = handleSubmit((values) => {
-    alert(JSON.stringify(values, null, 2));
+    console.log(JSON.stringify(values, null, 2));
 });
 </script>
 
 <style scoped>
 pre {
-    min-width: 500px;
     text-align: left;
 }
 </style>

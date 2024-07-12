@@ -3,6 +3,7 @@
     <q-input
         v-model="email"
         outlined
+        style="flex-grow: 1"
         placeholder="Enter your email"
         label="Email"
         bottom-slots

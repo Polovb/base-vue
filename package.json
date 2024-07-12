@@ -1,34 +1,38 @@
 {
-  "name": "base-vue",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@quasar/extras": "^1.16.9",
-    "@vee-validate/zod": "^4.12.4",
-    "axios": "^1.6.5",
-    "cropperjs": "^1.6.1",
-    "dot-object": "^2.1.4",
-    "quasar": "^2.14.2",
-    "vee-validate": "^4.12.4",
-    "vue": "^3.3.11",
-    "zod": "^3.22.4"
-  },
-  "devDependencies": {
-    "@quasar/vite-plugin": "^1.6.0",
-    "@types/dot-object": "^2.1.6",
-    "@vitejs/plugin-vue": "^4.5.2",
-    "sass": "^1.33.0",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.8",
-    "vue-tsc": "^1.8.25"
-  },
-  "prettier": {
-    "tabWidth": 4
-  }
+    "name": "base-vue",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@quasar/extras": "^1.16.9",
+        "@vee-validate/zod": "^4.12.4",
+        "axios": "^1.6.5",
+        "cropperjs": "^1.6.1",
+        "dot-object": "^2.1.4",
+        "lodash": "^4.17.21",
+        "quasar": "^2.14.2",
+        "vee-validate": "^4.13.2",
+        "vue": "^3.3.11",
+        "zod": "^3.22.4"
+    },
+    "devDependencies": {
+        "@quasar/vite-plugin": "^1.6.0",
+        "@types/dot-object": "^2.1.6",
+        "@vitejs/plugin-vue": "^4.5.2",
+        "autoprefixer": "^10.4.19",
+        "postcss": "^8.4.39",
+        "sass": "^1.33.0",
+        "tailwindcss": "^3.4.4",
+        "typescript": "^5.2.2",
+        "vite": "^5.0.8",
+        "vue-tsc": "^1.8.25"
+    },
+    "prettier": {
+        "tabWidth": 4
+    }
 }
